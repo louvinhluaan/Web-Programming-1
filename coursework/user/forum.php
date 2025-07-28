@@ -1,5 +1,5 @@
 <?php
-    require '../system/login/check.php';
+    include '../system/login/check.php';
 
 try {
     include '../system/include/DatabaseConnection.php';

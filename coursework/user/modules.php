@@ -1,5 +1,5 @@
 <?php 
-    require '../system/login/check.php';
+    include '../system/login/check.php';
     try {
         include '../system/include/DatabaseConnection.php';
         include '../system/include/DatabaseFunction.php';        
@@ -8,7 +8,10 @@
         $activeTab = 'modules';
         $title = 'Modules';
 
-        $sql = 'SELECT name FROM module';
+        $sql = 'SELECT m.id, m.name, m.description, COUNT(q.id) as total_questions
+                FROM module m
+                LEFT JOIN question q ON q.moduleid = m.id
+                GROUP BY m.id';
         $modules = $pdo->query($sql);
 
 

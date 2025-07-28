@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Gọi logic truy vấn dữ liệu
 include '../system/include/DatabaseConnection.php';
 include '../system/include/DatabaseFunction.php';
 

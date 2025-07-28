@@ -1,5 +1,5 @@
 <?php 
-    require '../system/login/check.php';
+    include '../system/login/check.php';
     try {
         include '../system/include/DatabaseConnection.php';
         include '../system/include/DatabaseFunction.php';        
@@ -8,7 +8,11 @@
         $activeTab = 'users';
         $title = 'Users';
 
-        $sql = 'SELECT name FROM user';
+        $sql = 'SELECT u.*, COUNT(q.id) AS total_questions
+                FROM user u
+                LEFT JOIN question q ON u.id = q.userid
+                GROUP BY u.id
+                ORDER BY u.created_at DESC';
         $users = $pdo->query($sql);
 
 

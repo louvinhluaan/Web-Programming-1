@@ -11,15 +11,17 @@
             <?php endif; ?>
 
             <p class="text-muted mt-3">
-                Posted by <strong><?= htmlspecialchars($question['user_name']) ?></strong> 
-                • <?php $display_date = date("M d, Y", strtotime($question['questdate']))?>   
+                Asked by <a class="text-decoration-none" href="tabs/users_tab/view_profile.php?id=<?=$question['userid']?>">
+                            <?=htmlspecialchars($question['user_name'], ENT_QUOTES, 'UTF-8'); ?>
+                        </a>
+                • <?php $display_date = date("M d, Y \a\\t h:i A", strtotime($question['questdate']))?>   
                 <?=htmlspecialchars($display_date, ENT_QUOTES, 'UTF-8')?>
             </p>
             
             <?php if (in_array('admin', $_SESSION['roles']) || $_SESSION['userid'] == $question['userid']): ?>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <!-- Button Edit -->
-                    <a href="editquestion.php?id=<?= $question['id'] ?>" class="btn btn-primary me-md-2">Edit</a>
+                    <a href="editquestion.php?id=<?= $question['id'] ?>" class="btn btn-primary me-md-1">Edit</a>
                     <!-- Button Delete -->
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletequestion">
                         Delete
@@ -53,7 +55,14 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <p><?= nl2br(htmlspecialchars($answer['answer_text'])) ?></p>
-                    <p class="text-muted mb-0">Answer by <strong><?= htmlspecialchars($answer['user_name']) ?></strong> • <?= $answer['created_at'] ?></p>
+                    <p class="text-muted mb-0">
+                        Answer by 
+                        <a class="text-decoration-none" href="tabs/users_tab/view_profile.php?id=<?=$answer['user_id']?>">
+                            <?=htmlspecialchars($answer['user_name'], ENT_QUOTES, 'UTF-8'); ?>
+                        </a> 
+                        • <?php $display_date = date("M d, Y \a\\t h:i A", strtotime($answer['created_at']))?>   
+                        <?=htmlspecialchars($display_date, ENT_QUOTES, 'UTF-8')?>
+                    </p>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -67,7 +76,6 @@
     <form action="answer_submit.php" method="POST">
         <?php if (isset($_SESSION['loggedin'])): ?>
             <input type="hidden" name="userid" value="<?= $_SESSION['userid'] ?>">
-            <p class="text-muted">You are replying as: <strong><?= htmlspecialchars($userName)?></strong></p>
         <?php endif; ?>
         
         <input type="hidden" name="question_id" value="<?= $question['id'] ?>">

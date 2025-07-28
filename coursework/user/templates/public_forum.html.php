@@ -1,14 +1,19 @@
-<div class="container mt-4" style="max-width: 900px;">
-  <div class="d-flex justify-content-between align-items-center border-bottom pb-2">
-    <h6 class="mb-0 text-muted"><?= $totalQuestions ?> questions</h6>
-    <a href="addquestion.php" class="btn btn-primary">Ask Question</a>
-  </div>
+  <div class="container mt-4" style="max-width: 900px;">
+    <div class="border-bottom pb-2 mb-4">
+      <h3>Newest Questions</h5>
+      <div class="d-flex justify-content-between align-items-center">
+        <h6 class="mb-0 text-muted"><?= $totalQuestions ?> questions</h6>
+        <a href="addquestion.php" class="btn btn-primary">Ask Question</a>
+      </div>
+    </div>
+
+
 </div>
 <?php foreach($questions as $question): ?>
 
 
     <?php
-    // Đếm số comment (câu trả lời)
+    // Count answers
     $stmt = $pdo->prepare("SELECT COUNT(*) FROM answers WHERE question_id = ?");
     $stmt->execute([$question['id']]);
     $commentCount = $stmt->fetchColumn();
@@ -33,9 +38,9 @@
             <div class="d-flex justify-content-between align-items-center mt-3">
                 <div>
                     <small class="text-muted">
-                    Posted by <a class="text-decoration-none" href="mailto:<?=htmlspecialchars($question['email'], ENT_QUOTES, 'UTF-8');?>">
+                    Asked by <a class="text-decoration-none" href="tabs/users_tab/view_profile.php?id=<?=$question['userid']?>">
                     <?=htmlspecialchars($question['user_name'], ENT_QUOTES, 'UTF-8'); ?></a>
-                    • <?php $display_date = date("M d, Y", strtotime($question['questdate']))?>   
+                    • <?php $display_date = date("M d, Y \a\\t h:i A", strtotime($question['questdate']))?>   
                     <?=htmlspecialchars($display_date, ENT_QUOTES, 'UTF-8')?>
                     </small>
                 </div>

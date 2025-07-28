@@ -19,11 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $roles = getUserRoles($pdo, $user['id']);
         $_SESSION['roles'] = $roles;
 
-        if (in_array('admin', $roles)) {
-            header("Location: ../../user/index.php");
-        } else {
-            header("Location: ../../user/index.php");
-        }
+        header("Location: ../../user/index.php");
+        // if (in_array('admin', $roles)) {
+        //     header("Location: ../../admin/admin_dashboard.php");
+        // } else {
+        //     header("Location: ../../user/index.php");
+        // }
         exit();
     } else {
         header("Location: login.php?error=Invalid+credentials");

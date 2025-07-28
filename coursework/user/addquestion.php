@@ -14,7 +14,7 @@
                 if ($uploadOk == 0) {
                     exit();
                 }
-                $imageName = basename($_FILES['fileToUpload']['name']);
+                $imageName = $target_file ? basename($target_file) : null;
             }
             
             $userId = in_array('admin', $_SESSION['roles']) ? $_POST['users'] : $_SESSION['userid'];

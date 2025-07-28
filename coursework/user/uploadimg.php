@@ -44,8 +44,7 @@ if (!empty($_FILES["fileToUpload"]["tmp_name"])) {
     // If everything is ok, try to upload file
     } else {
       if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        header('Location: forum.php');
-        exit();
+        // Success
       } else {
         $_SESSION['upload_error'] = 'Sorry, there was an error uploading your file.';
         redirectBack($context, $questionId);

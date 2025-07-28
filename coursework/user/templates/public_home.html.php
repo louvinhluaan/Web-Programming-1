@@ -1,2 +1,2 @@
-<h2>Greenwich Question Forum</h2>
-<p>Welcome to the forum for students at Greenwich University</p>
+<h2>GreOvercome</h2>
+<h4>Welcome to our forum, <?= $_SESSION['username'] ?>!</h4>
