@@ -1,6 +1,4 @@
 <div class="container pb-5">
-  <!-- Back Button -->
-
   <!-- User Info -->
   <div class="row justify-content-center mb-4">
     <div class="col-md-12">

@@ -14,7 +14,7 @@
             </span>
           </a>
           <div class="small text-muted mt-1">
-            Asked by <?= htmlspecialchars($q['author']) ?> • <?= date('M d, Y \a\t h:i A', strtotime($q['questdate'])) ?>
+            Asked by <?= htmlspecialchars($q['user_name']) ?> • <?= date('M d, Y \a\t h:i A', strtotime($q['questdate'])) ?>
           </div>
         </li>
       <?php endforeach; ?>

@@ -1,15 +1,13 @@
 <?php
-require '../system/login/check.php';
+session_start();
+include '../system/include/DatabaseConnection.php';
+include '../system/include/DatabaseFunction.php';
+
 $adminName = $_SESSION['username'];
 
 try {
-    include '../system/include/DatabaseConnection.php';
-    include '../system/include/DatabaseFunction.php';
-    
-
     $title = 'Contact Messages';
-    $stmt = $pdo->query("SELECT * FROM contact_messages ORDER BY created_at DESC");
-    $messages = $stmt->fetchAll();
+    $messages = getAllContactMessages($pdo);
 
     ob_start();
     include 'templates/contact_messages.html.php';

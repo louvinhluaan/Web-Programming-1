@@ -44,7 +44,7 @@
       <div class="container">
           <!--Logo-->
           <a class="navbar-brand" href="index.php">
-              <img src="\COMP1841\coursework\system\logo\logo.png" alt="Logo" width="50" height="50">
+              <img src="\COMP1841\coursework\system\logo\logo_v2.png" alt="Logo" width="50" height="50">
           </a>
 
           <!--Toggler for small devices-->          
@@ -62,7 +62,6 @@
             <div class="navbar-nav nav-underline me-auto mb-2 mb-lg-0">
                     <a class="nav-link <?= $isActive('home') ?>" href="\COMP1841\coursework\user\index.php">Home</a>
                     <a class="nav-link <?= $isActive('forum') ?>" href="\COMP1841\coursework\user\forum.php">Forum</a>
-                    <!-- <a class="nav-link" href="addquestion.php">Add a new question</a> -->
                     <a class="nav-link <?= $isActive('users') ?>" href="\COMP1841\coursework\user\users.php">Users</a>
                     <a class="nav-link <?= $isActive('modules') ?>" href="\COMP1841\coursework\user\modules.php">Modules</a>
                     <a class="nav-link <?= $isActive('contactus') ?>" href="\COMP1841\coursework\user\contactus.php">Contact Us</a>
@@ -139,7 +138,7 @@
             </div>
             <hr>
             <div class="d-flex justify-content-between">
-                <p>&copy; 2025 LouVinhLuan. All Rights Reserved.</p>
+                <p>&copy; 2025 GreOvercome. All Rights Reserved.</p>
                 <div class="d-flex">
                     <a href="#" class="text-decoration-none text-light me-3">Terms of use</a>
                     <a href="#" class="text-decoration-none text-light">Privacy Policy</a>

@@ -1,8 +1,8 @@
 <?php
+    include '../../system/include/DatabaseConnection.php';
+    include '../../system/include/DatabaseFunction.php';
+    
     try {
-        include '../../system/include/DatabaseConnection.php';
-        include '../../system/include/DatabaseFunction.php';
-
         if (!isset($_GET['id'])) {
             die('User ID not provided.');
         }
@@ -20,8 +20,7 @@
             $newName = $_POST['name'];
             $newEmail = $_POST['email'];
 
-            updateUser($pdo, $id, $newName, $newEmail);
-
+            editUser($pdo, $id, $newName, $newEmail);
             header('Location: ../manageusers.php');
             exit;
         }        

@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,10 +13,10 @@
       <div class="card-body">
         <h3 class="card-title mb-4 text-center">Log In</h3>
 
-        <!-- Show error if available -->
-        <?php if (!empty($error)): ?>
-          <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
-        <?php endif; ?>
+        <!-- Alert-->
+        <div class="mt-3">
+            <?php include '../../include/alert.php'; ?>
+        </div> 
 
         <form action="../login.php" method="POST">
           <div class="mb-3">
@@ -36,5 +38,7 @@
       </div>
     </div>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

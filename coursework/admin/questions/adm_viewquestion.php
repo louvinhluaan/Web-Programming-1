@@ -1,8 +1,8 @@
 <?php
-    try {
-        include '../../system/include/DatabaseConnection.php';
-        include '../../system/include/DatabaseFunction.php';
+    include '../../system/include/DatabaseConnection.php';
+    include '../../system/include/DatabaseFunction.php';    
 
+    try {
         if (!isset($_GET['id'])) {
             die('Question ID not provided.');
         }
@@ -17,7 +17,6 @@
         $answers = getAnswersByQuestionId($pdo, $id);
         
         $title = 'View Question';
-
         ob_start();
         include 'templates/adm_viewquestion.html.php';
         $output = ob_get_clean();

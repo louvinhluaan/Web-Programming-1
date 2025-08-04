@@ -1,16 +1,12 @@
 <?php
-require '../system/login/check.php';
+session_start();
 $adminName = $_SESSION['username'];
+include '../system/include/DatabaseConnection.php';
+include '../system/include/DatabaseFunction.php';
 
 try {
-    include '../system/include/DatabaseConnection.php';
-    include '../system/include/DatabaseFunction.php';
-    
-
-    $activeTab = 'manageusers';
     $title = 'Manage Users';
     $totalUsers = totalUsers($pdo);
-
     $users = getAllUsers($pdo);
 
     ob_start();

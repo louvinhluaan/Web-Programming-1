@@ -1,11 +1,10 @@
 <?php
     include '../system/login/check.php';
-    
-    try {
-        include '../system/include/DatabaseConnection.php';
-        include '../system/include/DatabaseFunction.php';   
+    include '../system/include/DatabaseConnection.php';
+    include '../system/include/DatabaseFunction.php';       
+    $activeTab = 'contactus';
 
-        $activeTab = 'contactus';
+    try {
         $title = 'Contact Us';
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -15,22 +14,18 @@
 
             if (!empty($name) && filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($message)) {
                 try {
-                    $stmt = $pdo->prepare("INSERT INTO contact_messages (name, email, message) 
-                                                    VALUES (:name, :email, :message)");
-                    $stmt->execute([
-                        ':name' => $name,
-                        ':email' => $email,
-                        ':message' => $message
-                    ]);
-                    header("Location: contactus.php?success=1");
+                    addContactMessages($pdo, $name, $email, $message);
+                    $_SESSION['success'] = 'Your message has been sent successfully!';
+                    header("Location: contactus.php");
                     exit();
                 } catch (PDOException $e) {
-                    // Log error if needed
-                    header("Location: contactus.php?error=1");
+                    $_SESSION['error'] = 'Something went wrong. Please try again.';
+                    header("Location: contactus.php");
                     exit();
                 }
             } else {
-                header("Location: contact.php?error=1");
+                $_SESSION['error'] = 'Something went wrong. Please try again.';
+                header("Location: contactus.php");
                 exit();
             }
         }
@@ -39,7 +34,7 @@
         include 'templates/public_contactus.html.php';
         $output = ob_get_clean();
     } catch (PDOException $e) {
-        $title = 'An error has occured';
+        $title = 'An error has occurred';
         $output = 'Database error: ' . $e ->getMessage();
     }
 

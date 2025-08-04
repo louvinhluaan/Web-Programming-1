@@ -1,9 +1,8 @@
 <?php 
     include '../../../system/login/check.php';
+    include '../../../system/include/DatabaseConnection.php';
+    include '../../../system/include/DatabaseFunction.php';       
     try {
-        include '../../../system/include/DatabaseConnection.php';
-        include '../../../system/include/DatabaseFunction.php';      
-
         $title = 'User Profile';
 
         if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
@@ -11,46 +10,31 @@
         }
 
         $userId = (int) $_GET['id'];
-
-        // Get user details
-        $stmt = $pdo->prepare("SELECT id, name, email, created_at, bio FROM user WHERE id = :id");
-        $stmt->execute([':id' => $userId]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user = getUserById($pdo, $userId);
 
         if (!$user) {
             die('User not found');
         }
 
         // Get number of questions asked by user
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM question WHERE userid = :id");
-        $stmt->execute([':id' => $userId]);
-        $totalQuestions = $stmt->fetchColumn();
+        $totalQuestions = getQuestionsAskedByUser($pdo, $userId);
 
         // Get recent questions by user
-        $questionStmt = $pdo->prepare("SELECT id, questtext, questdate FROM question WHERE userid = :id ORDER BY questdate DESC LIMIT 5");
-        $questionStmt->execute([':id' => $userId]);
-        $userQuestions = $questionStmt->fetchAll();
+        $userQuestions = getRecentQuestions($pdo, $userId);
 
         // Get recent answers by user
-        $answerStmt = $pdo->prepare("SELECT answers.id, answers.answer_text, answers.created_at, question.questtext, question_id
-            FROM answers
-            JOIN question ON answers.question_id = question.id
-            WHERE answers.user_id = :id
-            ORDER BY answers.created_at DESC
-            LIMIT 5");
-        $answerStmt->execute([':id' => $userId]);
-        $userAnswers = $answerStmt->fetchAll();
+        $userAnswers = getRecentAnswers($pdo, $userId);
 
         // Badges
         $badges = ['Gold', 'Silver', 'Bronze'];
-
+        
         $totalAnswers = count($userAnswers);
         $totalBadges = count($badges);
         ob_start();
         include 'templates/view_profile.html.php';
         $output = ob_get_clean();
     } catch (PDOException $e) {
-        $title = 'An error has occured';
+        $title = 'An error has occurred';
         $output = 'Database error: ' . $e ->getMessage();
     }
     

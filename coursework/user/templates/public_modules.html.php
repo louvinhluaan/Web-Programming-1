@@ -14,11 +14,6 @@
 <div class="container pb-5">
   <h2 class="mb-4">Modules</h2>
 
-  <!-- Search Bar -->
-  <form class="mb-4" method="get" action="">
-    <input type="text" name="search" class="form-control" placeholder="Search modules...">
-  </form>
-
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4">
     <?php foreach ($modules as $module): ?>
       <div class="col">
@@ -27,7 +22,7 @@
             <div class="card-body text-center">
               <h5 class="card-title"><?= htmlspecialchars($module['name']) ?></h5>
               <p class="card-text small text-muted"><?= htmlspecialchars($module['description']) ?></p>
-              <p class="small text-secondary"><?= $module['total_questions'] ?> Questions</p>
+              <p class="small text-secondary"><?= $module['question_count'] ?> Questions</p>
             </div>
           </div>
         </a>

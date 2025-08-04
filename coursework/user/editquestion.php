@@ -10,7 +10,7 @@
                 $uploadOk = 1;
 
                 // Get original image from DB in case no new one is uploaded
-                $existingQuestion = getQuestion($pdo, $_POST['id']);
+                $existingQuestion = getQuestionById($pdo, $_POST['id']);
                 $imageName = $existingQuestion['images'];
 
                 // If a new file is uploaded
@@ -38,13 +38,12 @@
             }
 
         } else {
-            // Get request : Show form
             $id = $_GET['id'] ?? null;
             if (!$id) {
                 die("Error: Invalid or missing question ID.");
             }
 
-            $question = getQuestion($pdo, $id);
+            $question = getQuestionById($pdo, $id);
             if (!$question) {
                     die("Error: Question not found.");
             }            
@@ -53,7 +52,7 @@
             $modules = totalModules($pdo);
 
             ob_start();
-            include 'templates/editquestion.html.php';
+            include 'templates/edit_question.html.php';
             $output = ob_get_clean();
         }
     } catch (PDOException $e) {

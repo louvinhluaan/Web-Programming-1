@@ -11,9 +11,6 @@
 
 <div class="container pb-5">
   <h2 class="mb-4">Users</h2>
-  <form class="mb-4" method="get" action="">
-    <input type="text" name="search" class="form-control" placeholder="Search users by name...">
-  </form>
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4">
     <?php foreach ($users as $user): ?>
       <div class="col">

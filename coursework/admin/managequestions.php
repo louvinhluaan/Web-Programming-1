@@ -1,11 +1,10 @@
 <?php
-require '../system/login/check.php';
+session_start();
 $adminName = $_SESSION['username'];
 
 try {
     include '../system/include/DatabaseConnection.php';
     include '../system/include/DatabaseFunction.php';
-    
 
     $title = 'Manage Questions';
     $questions = allQuestions($pdo);

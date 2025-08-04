@@ -1,17 +1,18 @@
-  <div class="container mt-4" style="max-width: 900px;">
-    <div class="border-bottom pb-2 mb-4">
-      <h3>Newest Questions</h5>
-      <div class="d-flex justify-content-between align-items-center">
-        <h6 class="mb-0 text-muted"><?= $totalQuestions ?> questions</h6>
-        <a href="addquestion.php" class="btn btn-primary">Ask Question</a>
-      </div>
-    </div>
+<style>
+}
+</style>
 
+<div class="container mt-4" style="max-width: 900px;">
+  <div class="border-bottom pb-2 mb-4">
+    <h3>Newest Questions</h5>
+    <div class="d-flex justify-content-between align-items-center">
+      <h6 class="mb-0 text-muted"><?= $totalQuestions ?> questions</h6>
+      <a href="add_question.php" class="btn btn-primary">Ask Question</a>
+  </div>
+</div>
 
 </div>
 <?php foreach($questions as $question): ?>
-
-
     <?php
     // Count answers
     $stmt = $pdo->prepare("SELECT COUNT(*) FROM answers WHERE question_id = ?");
@@ -24,9 +25,11 @@
         <div class="card-body p-4">
             <!-- Title -->
             <h5 class="card-title fw-semibold mb-3">
-                <a href="view_question.php?id=<?= $question['id'] ?>" class="text-decoration-none text-primary">
-                    <?=htmlspecialchars($question['questtext'], ENT_QUOTES, 'UTF-8') ?>
-                </a>
+                <div class="d-block text-truncate text-primary" style="max-width: 700px;">
+                    <a href="view_question.php?id=<?= $question['id'] ?>" class="text-decoration-none text-primary">
+                        <?=htmlspecialchars($question['questtext'], ENT_QUOTES, 'UTF-8') ?>
+                    </a>
+                </div>
             </h5>                
 
             <!-- Description -->

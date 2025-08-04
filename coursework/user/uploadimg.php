@@ -8,14 +8,14 @@ if (!empty($_FILES["fileToUpload"]["tmp_name"])) {
     // Check file type
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if ($check === false) {
-        $_SESSION['upload_error'] = 'File is not an image.';
+        $_SESSION['error'] = 'File is not an image.';
         redirectBack($context, $questionId);
         $uploadOk = 0;
     }
 
     // Check if file already exists
         if (file_exists($target_file)) {
-        $_SESSION['upload_error'] = 'Sorry, file already exists.';
+        $_SESSION['error'] = 'Sorry, file already exists.';
         redirectBack($context, $questionId);
         $uploadOk = 0;
         exit();
@@ -23,7 +23,7 @@ if (!empty($_FILES["fileToUpload"]["tmp_name"])) {
 
     // Check file size
     if ($_FILES["fileToUpload"]["size"] > 500000) {
-        $_SESSION['upload_error'] = 'Sorry, your file is too large.';
+        $_SESSION['error'] = 'Sorry, your file is too large.';
         redirectBack($context, $questionId);
         $uploadOk = 0;
     }
@@ -31,14 +31,14 @@ if (!empty($_FILES["fileToUpload"]["tmp_name"])) {
     // Allow certain file formats
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     && $imageFileType != "gif" ) {
-        $_SESSION['upload_error'] = 'Sorry, only JPG, JPEG, PNG & GIF files are allowed.';
+        $_SESSION['error'] = 'Sorry, only JPG, JPEG, PNG & GIF files are allowed.';
         redirectBack($context, $questionId);
         $uploadOk = 0;
     }
 
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
-        $_SESSION['upload_error'] = 'Sorry, your file was not uploaded. Try again!';
+        $_SESSION['error'] = 'Sorry, your file was not uploaded. Try again!';
         redirectBack($context, $questionId);
 
     // If everything is ok, try to upload file
@@ -46,7 +46,7 @@ if (!empty($_FILES["fileToUpload"]["tmp_name"])) {
       if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         // Success
       } else {
-        $_SESSION['upload_error'] = 'Sorry, there was an error uploading your file.';
+        $_SESSION['error'] = 'Sorry, there was an error uploading your file.';
         redirectBack($context, $questionId);
       }
     }    
@@ -58,9 +58,9 @@ if (!empty($_FILES["fileToUpload"]["tmp_name"])) {
 
 function redirectBack($context, $questionId = null) {
     if ($context === 'edit' && $questionId) {
-        header("Location: editquestion.php?id=" . urlencode($questionId));
+        header("Location: edit_question.php?id=" . urlencode($questionId));
     } else {
-        header("Location: addquestion.php");
+        header("Location: add_question.php");
     }
     exit();
 }

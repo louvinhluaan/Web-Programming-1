@@ -1,12 +1,9 @@
 <?php
     include '../system/login/check.php';
-
-try {
     include '../system/include/DatabaseConnection.php';
     include '../system/include/DatabaseFunction.php';
-    
-
     $activeTab = 'forum';
+try {
     $title = 'Forum';
     $total = totalQuestions($pdo);
 
@@ -25,12 +22,11 @@ try {
         $totalQuestions = countSearchResults($pdo, $keyword);
         $questions = searchQuestionsPaginated($pdo, $keyword, $limit, $offset);
     } else {
-        $totalQuestions = countAllQuestions($pdo);
+        $totalQuestions = totalQuestions($pdo);
         $questions = getAllQuestionsPaginated($pdo, $limit, $offset);
     }
 
     $totalPages = ceil($totalQuestions / $limit);   
-
 
     ob_start();
     include 'templates/public_forum.html.php';

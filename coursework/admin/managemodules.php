@@ -1,14 +1,12 @@
 <?php
-require '../system/login/check.php';
+session_start();
+include '../system/include/DatabaseConnection.php';
+include '../system/include/DatabaseFunction.php';
+
 $adminName = $_SESSION['username'];
 
 try {
-    include '../system/include/DatabaseConnection.php';
-    include '../system/include/DatabaseFunction.php';
-    
-
     $title = 'Manage Modules';
-
     $modules = getAllModules($pdo);
 
     ob_start();

@@ -1,14 +1,14 @@
 <?php
 session_start();
 include '../include/DatabaseConnection.php';
+include '../include/DatabaseFunction.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $stmt = $pdo->prepare("SELECT * FROM user WHERE email = :email");
-    $stmt->execute([':email' => $email]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Check user
+    $user = checkEmail($pdo, $email);
 
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['loggedin'] = 'Y';
@@ -20,22 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['roles'] = $roles;
 
         header("Location: ../../user/index.php");
-        // if (in_array('admin', $roles)) {
-        //     header("Location: ../../admin/admin_dashboard.php");
-        // } else {
-        //     header("Location: ../../user/index.php");
-        // }
         exit();
     } else {
-        header("Location: login.php?error=Invalid+credentials");
+        $_SESSION['error'] = 'Login failed. Try again.';
+        header("Location: templates/login.html.php");
         exit();
     }
 }
 
-function getUserRoles($pdo, $userId) {
-    $stmt = $pdo->prepare("SELECT role.name FROM role 
-        JOIN userrole ON role.id = userrole.roleid 
-        WHERE userrole.userid = :userid");
-    $stmt->execute([':userid' => $userId]);
-    return array_column($stmt->fetchAll(PDO::FETCH_ASSOC), 'name');
-}
+

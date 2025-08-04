@@ -1,8 +1,8 @@
 <?php
-    try {
-        include '../../system/include/DatabaseConnection.php';
-        include '../../system/include/DatabaseFunction.php';
+    include '../../system/include/DatabaseConnection.php';
+    include '../../system/include/DatabaseFunction.php';
 
+    try {
         $title = 'Edit Module';
 
         if (!isset($_GET['id'])) {
@@ -20,12 +20,10 @@
             $newName = trim($_POST['name']);
 
             if (!empty($newName)) {
-                updateModule($pdo, $id, $newName);
+                editModule($pdo, $id, $newName);
                 header('Location: ../managemodules.php');
                 exit;
             }
-
-            $error = "Module name cannot be empty.";
         }        
 
         ob_start();

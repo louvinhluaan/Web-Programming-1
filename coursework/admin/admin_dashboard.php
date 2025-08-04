@@ -1,12 +1,10 @@
 <?php
-require '../system/login/check.php';
+session_start();
 $adminName = $_SESSION['username'];
+include '../system/include/DatabaseConnection.php';
+include '../system/include/DatabaseFunction.php';
 
 try {
-    include '../system/include/DatabaseConnection.php';
-    include '../system/include/DatabaseFunction.php';
-    
-
     $title = 'Admin Dashboard';
     $questions = allQuestions($pdo);
     $users = getAllUsers($pdo);

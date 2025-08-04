@@ -11,7 +11,7 @@
     <div class="card-body">
       <h5 class="card-title"><?= htmlspecialchars($question['questtext']) ?></h5>
       <p class="card-text">
-        <strong>User:</strong> <?= htmlspecialchars($question['author_name']) ?><br>
+        <strong>User:</strong> <?= htmlspecialchars($question['user_name']) ?><br>
         <strong>Module:</strong> <?= htmlspecialchars($question['module_name']) ?><br>
         <strong>Date:</strong> <?php $display_date = date("M d, Y \a\\t h:i A", strtotime($question['questdate']))?>   
                     <?=htmlspecialchars($display_date, ENT_QUOTES, 'UTF-8')?>
@@ -30,7 +30,9 @@
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <p class="mb-1"><?= htmlspecialchars($a['answer_text']) ?></p>
+                    <span class="d-block" style="max-width: 100%; word-break: break-word;">
+                          <?= htmlspecialchars($a['answer_text']) ?>
+                    </span>
                     <small class="text-muted">By <?= htmlspecialchars($a['user_name']) ?> • <?php $display_date = date("M d, Y \a\\t h:i A", strtotime($a['created_at']))?>   
                     <?=htmlspecialchars($display_date, ENT_QUOTES, 'UTF-8')?></small>
                 </div>
