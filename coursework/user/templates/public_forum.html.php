@@ -40,11 +40,15 @@
             <!-- Author and time -->
             <div class="d-flex justify-content-between align-items-center mt-3">
                 <div>
-                    <small class="text-muted">
-                    Asked by <a class="text-decoration-none" href="tabs/users_tab/view_profile.php?id=<?=$question['userid']?>">
-                    <?=htmlspecialchars($question['user_name'], ENT_QUOTES, 'UTF-8'); ?></a>
-                    • <?php $display_date = date("M d, Y \a\\t h:i A", strtotime($question['questdate']))?>   
-                    <?=htmlspecialchars($display_date, ENT_QUOTES, 'UTF-8')?>
+                    <small class="text-muted d-inline-flex align-items-center" style="max-width: 100%;">
+                      Asked by&nbsp;
+                      <a class="text-decoration-none text-truncate d-inline-block me-1" 
+                         style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" 
+                         href="tabs/users_tab/view_profile.php?id=<?=$question['userid']?>">
+                         <?=htmlspecialchars($question['user_name'], ENT_QUOTES, 'UTF-8'); ?>
+                      </a>
+                        • <?php $display_date = date("M d, Y \a\\t h:i A", strtotime($question['questdate']))?>   
+                      <?=htmlspecialchars($display_date, ENT_QUOTES, 'UTF-8')?>
                     </small>
                 </div>
 

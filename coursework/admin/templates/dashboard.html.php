@@ -84,11 +84,11 @@
             <tr>
               <td><?= $index + 1 ?></td>
               <td>
-                <div class="text-truncate" style="max-width: 250px;">
+                <div class="text-truncate" style="max-width: 200px;">
                     <?= htmlspecialchars($q['questtext']) ?>
                 </div>
               </td>
-              <td>
+              <td class="text-truncate" style="max-width: 100px;">
                 <img src="https://ui-avatars.com/api/?name=<?= urlencode($q['user_name']) ?>&background=0d6efd&color=fff" 
                     width="24" 
                     height="24" 

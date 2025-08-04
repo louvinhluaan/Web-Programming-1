@@ -53,7 +53,7 @@
         <?php foreach ($users as $index => $user): ?>    
         <tr>
             <td><?= $index + 1 ?></td>
-            <td>
+            <td class="text-truncate" style="max-width: 100px;">
                 <img src="https://ui-avatars.com/api/?name=<?= urlencode($user['name']) ?>&background=0d6efd&color=fff" 
                     width="24" 
                     height="24" 

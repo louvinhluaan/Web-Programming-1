@@ -10,8 +10,11 @@
                 <img src="images/<?= htmlspecialchars($question['images']) ?>" class="img-fluid mt-3" style="max-height: 300px;" alt="Question Image">
             <?php endif; ?>
 
-            <p class="text-muted mt-3">
-                Asked by <a class="text-decoration-none" href="tabs/users_tab/view_profile.php?id=<?=$question['userid']?>">
+            <p class="text-muted mt-3 d-inline-flex align-items-center" style="max-width: 100%;"">
+                Asked by&nbsp;
+                         <a class="text-decoration-none text-truncate d-inline-block me-1" 
+                            style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+                            href="tabs/users_tab/view_profile.php?id=<?=$question['userid']?>">
                             <?=htmlspecialchars($question['user_name'], ENT_QUOTES, 'UTF-8'); ?>
                         </a>
                 • <?php $display_date = date("M d, Y \a\\t h:i A", strtotime($question['questdate']))?>   
@@ -55,9 +58,11 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <p><?= nl2br(htmlspecialchars($answer['answer_text'])) ?></p>
-                    <p class="text-muted mb-0">
-                        Answer by 
-                        <a class="text-decoration-none" href="tabs/users_tab/view_profile.php?id=<?=$answer['user_id']?>">
+                    <p class="text-muted mb-0 d-inline-flex align-items-center" style="max-width: 100%;">
+                        Answer by&nbsp;
+                        <a class="text-decoration-none text-truncate d-inline-block me-1"
+                            style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+                            href="tabs/users_tab/view_profile.php?id=<?=$answer['user_id']?>">
                             <?=htmlspecialchars($answer['user_name'], ENT_QUOTES, 'UTF-8'); ?>
                         </a> 
                         • <?php $display_date = date("M d, Y \a\\t h:i A", strtotime($answer['created_at']))?>   

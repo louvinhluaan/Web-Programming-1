@@ -87,7 +87,7 @@
                             width="24" 
                             height="24" 
                             class="rounded-circle me-2">
-                        <strong><?= htmlspecialchars($_SESSION['username']) ?></strong>
+                        <strong class="text-truncate d-inline-block" style="max-width: 100px;"><?= htmlspecialchars($_SESSION['username']) ?></strong>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         <li><a class="dropdown-item" href="\COMP1841\coursework\user\tabs\users_tab\view_profile.php?id=<?= $_SESSION['userid'] ?>">Profile</a></li>
