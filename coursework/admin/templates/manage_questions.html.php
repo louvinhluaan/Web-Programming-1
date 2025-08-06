@@ -56,7 +56,7 @@
               <td><?= $index + 1 ?></td>
               <td>
                 <div class="text-truncate" style="max-width: 250px;">
-                    <?= htmlspecialchars($q['questtext']) ?>
+                    <?= htmlspecialchars($q['quest_title']) ?>
                 </div>
               </td>
               <td class="text-truncate" style="max-width: 100px;">

@@ -3,6 +3,11 @@
   <form action="add_question.php" method="post" enctype="multipart/form-data">
     
     <div class="mb-3">
+      <label for="quest_title" class="form-label">Title</label>
+      <input type="text" name="quest_title" class="form-control" id="quest_title" required>
+    </div>  
+
+    <div class="mb-3">
       <label for="questtext" class="form-label">Type your question here:</label>
       <textarea name="questtext" class="form-control" id="questtext" rows="4" required></textarea>
     </div>

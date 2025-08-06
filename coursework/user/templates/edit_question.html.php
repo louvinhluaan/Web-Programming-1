@@ -4,6 +4,12 @@
     <form action="" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?= htmlspecialchars($question['id']) ?>">
 
+        <!-- Question Title -->
+        <div class="mb-3">
+        <label for="quest_title" class="form-label">Title</label>
+        <input type="text" name="quest_title" class="form-control" id="quest_title" value="<?= htmlspecialchars($question['quest_title']) ?>" required>
+        </div>
+
         <!-- Question Text -->
         <div class="mb-3">
             <label for="questtext" class="form-label">Your question:</label>
@@ -27,7 +33,7 @@
             
             <!-- User -->
             <div class="col-md-6 mb-3">
-                <label for="userid" class="form-label">
+                <label for="userid" class="form-label text-truncate" style="max-width: 100px;" title="<?= htmlspecialchars($question['user_name'], ENT_QUOTES, 'UTF-8') ?>">
                     User: <strong><?= htmlspecialchars($question['user_name'], ENT_QUOTES, 'UTF-8') ?></strong>
                 </label>
             </div>

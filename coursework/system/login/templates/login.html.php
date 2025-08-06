@@ -11,7 +11,7 @@
   <div class="container mt-5" style="max-width: 500px;">
     <div class="card shadow">
       <div class="card-body">
-        <h3 class="card-title mb-4 text-center">Log In</h3>
+        <h3 class="card-title mb-4 text-center">Login</h3>
 
         <!-- Alert-->
         <div class="mt-3">
@@ -29,7 +29,7 @@
             <input type="password" name="password" id="password" class="form-control" required>
           </div>
 
-          <button type="submit" class="btn btn-primary w-100">Log In</button>
+          <button type="submit" class="btn btn-primary w-100">Login</button>
         </form>
 
         <div class="text-center mt-3">

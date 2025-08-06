@@ -14,7 +14,7 @@
     }
 
     function allQuestions($pdo) {
-        $questions = query($pdo, 'SELECT q.id, q.questtext, q.questdate, q.images, u.name AS user_name, u.email, m.name as module_name
+        $questions = query($pdo, 'SELECT q.id, q.quest_title, q.questtext, q.questdate, q.images, q.userid, q.moduleid, u.name AS user_name, u.email, m.name as module_name
                                             FROM question q
                                             INNER JOIN user u ON q.userid = u.id
                                             INNER JOIN module m ON q.moduleid = m.id
@@ -25,7 +25,7 @@
     function getQuestionById($pdo, $id) {
         $parameters = [':id' => $id];
         $query = query($pdo, 
-                       'SELECT q.*, u.name AS user_name, m.name AS module_name
+                       'SELECT q.id, q.quest_title, q.questtext, q.questdate, q.images, q.userid, q.moduleid, u.name AS user_name, m.name AS module_name
                                 FROM question q
                                 JOIN user u ON q.userid = u.id
                                 JOIN module m ON q.moduleid = m.id
@@ -42,7 +42,7 @@
 
     function getQuestionsInModule($pdo, $module_id) {
         $parameters = [':module_id'=> $module_id];
-        $sql = "SELECT q.id, q.questtext, q.questdate, u.name AS user_name
+        $sql = "SELECT q.id, q.quest_title, q.questtext, q.questdate, u.name AS user_name
                 FROM question q
                 JOIN user u ON q.userid = u.id
                 WHERE q.moduleid = :module_id
@@ -53,15 +53,15 @@
 
     function getRecentQuestions($pdo, $user_id) {
         $parameters = [':user_id' => $user_id];
-        $sql = "SELECT id, questtext, questdate FROM question WHERE userid = :user_id ORDER BY questdate DESC LIMIT 5";
+        $sql = "SELECT id, quest_title, questtext, questdate FROM question WHERE userid = :user_id ORDER BY questdate DESC LIMIT 5";
         $query = query($pdo, $sql, $parameters);
         return $query->fetchAll();  
     }    
 
-    function addQuestion($pdo, $questtext, $images, $userid, $moduleid) {
-        $query = 'INSERT INTO question (questtext, questdate, images, userid, moduleid)
-                  VALUES (:questtext, NOW(), :images, :userid, :moduleid)';
-        $parameters = [':questtext' => $questtext, ':images' => $images, ':userid' => $userid, ':moduleid' => $moduleid];
+    function addQuestion($pdo, $quest_title, $questtext, $images, $userid, $moduleid) {
+        $query = 'INSERT INTO question (quest_title, questtext, questdate, images, userid, moduleid)
+                  VALUES (:quest_title, :questtext, NOW(), :images, :userid, :moduleid)';
+        $parameters = ['quest_title' => $quest_title, ':questtext' => $questtext, ':images' => $images, ':userid' => $userid, ':moduleid' => $moduleid];
         query($pdo, $query, $parameters);
     }
     
@@ -70,13 +70,14 @@
         query($pdo, 'DELETE FROM question WHERE id = :id', $parameters);
     }
 
-    function editQuestion($pdo, $questid, $questtext, $images, $moduleid){
+    function editQuestion($pdo, $questid, $quest_title, $questtext, $images, $moduleid){
         $query = 'UPDATE question 
-                  SET questtext = :questtext,
+                  SET quest_title = :quest_title, 
+                  questtext = :questtext,
                   images = :images,
                   moduleid = :moduleid
                   WHERE id = :id';
-        $parameters = [':id' => $questid, ':questtext' => $questtext, ':images' => $images, ':moduleid' => $moduleid];
+        $parameters = [':id' => $questid, ':quest_title' => $quest_title, ':questtext' => $questtext, ':images' => $images, ':moduleid' => $moduleid];
         query($pdo, $query, $parameters);
     }
 
@@ -90,7 +91,7 @@
     
     function getRecentAnswers($pdo, $user_id) {
         $parameters = ['user_id' => $user_id];
-        $sql = "SELECT answers.id, answers.answer_text, answers.created_at, question.questtext, question_id
+        $sql = "SELECT answers.id, answers.answer_text, answers.created_at, question.quest_title, question_id
                 FROM answers
                 JOIN question ON answers.question_id = question.id
                 WHERE answers.user_id = :user_id

@@ -44,7 +44,7 @@
       <div class="container">
           <!--Logo-->
           <a class="navbar-brand" href="index.php">
-              <img src="\COMP1841\coursework\system\logo\logo_v2.png" alt="Logo" width="50" height="50">
+              <img src="\COMP1841\coursework\system\logo\logo.png" alt="Logo" width="50" height="50">
           </a>
 
           <!--Toggler for small devices-->          
@@ -70,18 +70,21 @@
                     <?php endif; ?>
             </div>
 
-            <form method="get" action="forum.php" class="d-flex me-4" role="search">
-                <div class="input-group">
-                    <span class="input-group-text bg-light" id="search-icon">
-                        <i class="bi bi-search"></i>
-                    </span>                    
-                    <input class="form-control me-2" type="search" name="keyword" placeholder="Search..." aria-label="Search" value="<?= htmlspecialchars($_GET['keyword'] ?? '') ?>"/>
-                </div>
-                <button class="btn btn-outline-primary" type="submit">Search</button>
-            </form>
+            <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-3">
+                <!-- Searching -->            
+                <form method="get" action="forum.php" class="d-flex flex-grow-1" role="search">
+                    <div class="input-group w-100">
+                        <span class="input-group-text bg-light" id="search-icon">
+                            <i class="bi bi-search"></i>
+                        </span>                    
+                        <input class="form-control" type="search" name="keyword" placeholder="Search..." aria-label="Search" value="<?= htmlspecialchars($_GET['keyword'] ?? '') ?>"/>
+                    </div>
+                    <button class="btn btn-outline-primary ms-2" type="submit">Search</button>
+                </form>
 
-            <?php if (isset($_SESSION['username'])): ?>
-                <div class="dropdown">
+                <!-- User Profile-->  
+                <?php if (isset($_SESSION['username'])): ?>
+                <div class="dropdown mt-2 mt-lg-0">
                     <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="https://ui-avatars.com/api/?name=<?= urlencode($_SESSION['username']) ?>&background=0d6efd&color=fff" 
                             width="24" 
@@ -95,7 +98,8 @@
                         <li><a class="dropdown-item text-danger" href="\COMP1841\coursework\system\login\logout.php">Log out</a></li>
                     </ul>
                 </div>
-            <?php endif; ?>            
+                <?php endif; ?>
+            </div>         
 
           </div>
           

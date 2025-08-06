@@ -1,5 +1,5 @@
 <?php
-session_start();
+include '../system/login/check.php';
 $adminName = $_SESSION['username'];
 
 try {

@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    include '../../../system/login/check.php';
     include '../../../system/include/DatabaseConnection.php';
     include '../../../system/include/DatabaseFunction.php';    
     try {
@@ -8,8 +8,15 @@
         }
 
         $user_id = $_GET['id'];
-        $user = getUserById($pdo, $user_id);
+        $loggedInUserId = $_SESSION['userid'];
 
+
+        // Check ownership: reject if current user doesn't match the profile
+        if ($user_id != $loggedInUserId) {
+            die("Unauthorized: You are not allowed to edit this profile.");
+        }
+
+        $user = getUserById($pdo, $user_id);
         if (!$user) {
             die("User not found.");
         }

@@ -9,9 +9,16 @@
 
   <div class="card mb-4">
     <div class="card-body">
-      <h5 class="card-title"><?= htmlspecialchars($question['questtext']) ?></h5>
+      <h4 class="card-title"><?= htmlspecialchars($question['quest_title']) ?></h4>
+      <p class="card-text"><?= htmlspecialchars($question['questtext']) ?></p>
       <p class="card-text">
-        <strong>User:</strong> <?= htmlspecialchars($question['user_name']) ?><br>
+        <div class="d-inline-flex align-items-baseline" style="max-width: 100%;">
+          <strong class="me-1">User:</strong>
+          <span class="text-truncate" style="max-width: 200px;" 
+                title="<?= htmlspecialchars($question['user_name']) ?>">
+            <?= htmlspecialchars($question['user_name']) ?>
+          </span>
+        </div> <br>
         <strong>Module:</strong> <?= htmlspecialchars($question['module_name']) ?><br>
         <strong>Date:</strong> <?php $display_date = date("M d, Y \a\\t h:i A", strtotime($question['questdate']))?>   
                     <?=htmlspecialchars($display_date, ENT_QUOTES, 'UTF-8')?>
@@ -33,8 +40,15 @@
                     <span class="d-block" style="max-width: 100%; word-break: break-word;">
                           <?= htmlspecialchars($a['answer_text']) ?>
                     </span>
-                    <small class="text-muted">By <?= htmlspecialchars($a['user_name']) ?> • <?php $display_date = date("M d, Y \a\\t h:i A", strtotime($a['created_at']))?>   
-                    <?=htmlspecialchars($display_date, ENT_QUOTES, 'UTF-8')?></small>
+
+                    <div class="d-flex flex-wrap align-items-center gap-1 text-muted small">
+                        <span>By</span>
+                        <span class="text-truncate" style="max-width: 180px;" title="<?= htmlspecialchars($a['user_name']) ?>">
+                            <?= htmlspecialchars($a['user_name']) ?>
+                        </span>
+                        <span>• <?= $display_date ?></span>
+                    </div>
+
                 </div>
                 <a href="delete_answer.php?id=<?= $a['id'] ?>&qid=<?= $question['id'] ?>" 
                     class="btn btn-sm btn-outline-danger ms-3"

@@ -74,7 +74,7 @@
                 <div>
                   <a href="../../view_question.php?id=<?= $q['id'] ?>" class="text-decoration-none">
                     <span class="d-block text-truncate" style="max-width: 100%;">
-                      <?= htmlspecialchars($q['questtext']) ?>
+                      <?= htmlspecialchars($q['quest_title']) ?>
                     </span>
                   </a>
                 </div>
@@ -101,7 +101,7 @@
                 <!-- Question Clickable -->
                 <a href="../../view_question.php?id=<?= $a['question_id'] ?>" class="text-decoration-none">
                   <span class="d-block text-truncate" style="max-width: 100%;">    
-                    <?= htmlspecialchars($a['questtext']) ?>
+                    <?= htmlspecialchars($a['quest_title']) ?>
                   </span>
                 </a>
                 <div class="ms-3 mt-2 p-2 bg-light border-3 rounded">

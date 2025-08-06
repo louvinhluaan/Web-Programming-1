@@ -10,6 +10,6 @@
       </div>
     </div>
     <button type="submit" class="btn btn-success">Add Module</button>
-    <a href="manage_modules.php" class="btn btn-secondary">Cancel</a>
+    <a href="../managemodules.php" class="btn btn-secondary">Cancel</a>
   </form>
 </body>

@@ -1,7 +1,3 @@
-<style>
-}
-</style>
-
 <div class="container mt-4" style="max-width: 900px;">
   <div class="border-bottom pb-2 mb-4">
     <h3>Newest Questions</h5>
@@ -27,17 +23,22 @@
             <h5 class="card-title fw-semibold mb-3">
                 <div class="d-block text-truncate text-primary" style="max-width: 700px;">
                     <a href="view_question.php?id=<?= $question['id'] ?>" class="text-decoration-none text-primary">
-                        <?=htmlspecialchars($question['questtext'], ENT_QUOTES, 'UTF-8') ?>
+                        <?=htmlspecialchars($question['quest_title'], ENT_QUOTES, 'UTF-8') ?>
                     </a>
                 </div>
             </h5>                
+
+            <!-- Question Text -->
+            <p class="card-text text-dark text-truncate" style="max-widtd: 100px;">
+                <?=htmlspecialchars($question['questtext'], ENT_QUOTES, 'UTF-8'); ?>
+            </p>
 
             <!-- Description -->
             <p class="card-text text-secondary">
                 Module <?=htmlspecialchars($question['module_name'], ENT_QUOTES, 'UTF-8'); ?>
             </p>
 
-            <!-- Author and time -->
+            <!-- User and time -->
             <div class="d-flex justify-content-between align-items-center mt-3">
                 <div>
                     <small class="text-muted d-inline-flex align-items-center" style="max-width: 100%;">

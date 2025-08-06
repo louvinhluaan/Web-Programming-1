@@ -1,5 +1,5 @@
 <?php 
-    session_start();
+    include '../system/login/check.php';
     include '../system/include/DatabaseConnection.php';
     include '../system/include/DatabaseFunction.php';
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -18,7 +18,7 @@
             
             $userId = in_array('admin', $_SESSION['roles']) ? $_POST['users'] : $_SESSION['userid'];
 
-            addQuestion($pdo, $_POST['questtext'], $imageName, $userId, $_POST['modules']);
+            addQuestion($pdo, $_POST['quest_title'], $_POST['questtext'], $imageName, $userId, $_POST['modules']);
             header('location: forum.php');
         } catch (PDOException $e) {
             $title = 'An error has occurred';

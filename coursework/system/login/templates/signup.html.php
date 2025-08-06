@@ -11,7 +11,7 @@
   <div class="container mt-5" style="max-width: 500px;">
     <div class="card shadow">
       <div class="card-body">
-        <h3 class="card-title mb-4 text-center">Create an Account</h3>
+        <h3 class="card-title mb-4 text-center">Sign Up</h3>
         
         <!-- Alert-->
         <div class="mt-3">
@@ -48,7 +48,7 @@
         </form>
 
         <div class="text-center mt-3">
-          <small>Already have an account? <a href="login.html.php">Log In</a></small>
+          <small>Already have an account? <a href="login.html.php">Login</a></small>
         </div>
       </div>
     </div>

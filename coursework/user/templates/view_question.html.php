@@ -4,13 +4,14 @@
             <strong><?= htmlspecialchars($question['module_name']) ?></strong>
         </div>
         <div class="card-body">
+            <h2 class="mb-3"><?= htmlspecialchars($question['quest_title']) ?></h2>            
             <p><?= nl2br(htmlspecialchars($question['questtext'])) ?></p>
 
             <?php if (!empty($question['images'])): ?>
                 <img src="images/<?= htmlspecialchars($question['images']) ?>" class="img-fluid mt-3" style="max-height: 300px;" alt="Question Image">
             <?php endif; ?>
 
-            <p class="text-muted mt-3 d-inline-flex align-items-center" style="max-width: 100%;"">
+            <p class="text-muted mt-3 d-flex align-items-center flex-wrap" style="max-width: 100%;">
                 Asked by&nbsp;
                          <a class="text-decoration-none text-truncate d-inline-block me-1" 
                             style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"

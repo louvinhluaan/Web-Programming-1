@@ -1,4 +1,4 @@
-<?php 
+<?php
     include '../../../system/login/check.php';
     include '../../../system/include/DatabaseConnection.php';
     include '../../../system/include/DatabaseFunction.php';       
