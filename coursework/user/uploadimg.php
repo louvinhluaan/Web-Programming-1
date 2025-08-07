@@ -15,14 +15,6 @@ if (!empty($_FILES["fileToUpload"]["tmp_name"])) {
         $uploadOk = 0;
     }
 
-    // Check if file already exists
-        if (file_exists($target_file)) {
-        $_SESSION['error'] = 'Sorry, file already exists.';
-        redirectBack($context, $questionId);
-        $uploadOk = 0;
-        exit();
-    }
-
     // Check file size
     if ($_FILES["fileToUpload"]["size"] > 500000) {
         $_SESSION['error'] = 'Sorry, your file is too large.';

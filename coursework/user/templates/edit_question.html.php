@@ -1,4 +1,10 @@
 <div class="container mt-5">
+
+    <!-- Alert-->
+    <div class="mt-3">
+        <?php include '../system/include/alert.php'; ?>
+    </div> 
+
     <h2 class="mb-4">Edit Question</h2>
 
     <form action="" method="post" enctype="multipart/form-data">
@@ -48,11 +54,6 @@
                 <img src="images/<?= htmlspecialchars($question['images']) ?>" alt="Current Image" class="img-fluid mt-2" style="max-height: 150px;">
             <?php endif; ?>
         </div>
-
-        <!-- Alert-->
-        <div class="mt-3">
-            <?php include '../system/include/alert.php'; ?>
-        </div>  
 
         <!-- Buttons -->
         <div class="d-flex justify-content-between">

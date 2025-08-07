@@ -4,7 +4,7 @@
     <div class="col-md-12">
       <div class="card p-3 text-center position-relative">
         
-        <?php if ((isset($_SESSION['userid']) && $_SESSION['userid'] == $user['id']) || in_array('admin', $_SESSION['roles'])): ?>
+        <?php if ((isset($_SESSION['userid']) && $_SESSION['userid'] == $user['id'])): ?>
           <a href="edit_profile.php?id=<?= $user['id'] ?>" 
             class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-3">
             Edit

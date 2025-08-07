@@ -1,4 +1,9 @@
 <div class="container mt-5">
+    <!-- Alert-->
+    <div class="mt-3">
+        <?php include '../system/include/alert.php'; ?>
+    </div> 
+
   <h2 class="mb-4">Ask a Question</h2>
   <form action="add_question.php" method="post" enctype="multipart/form-data">
     
@@ -38,10 +43,7 @@
       <input type="file" name="fileToUpload" id="fileToUpload" class="form-control">
     </div>
 
-    <!-- Alert-->
-    <div class="mt-3">
-        <?php include '../system/include/alert.php'; ?>
-    </div>  
+ 
 
     <button type="submit" name="submit" class="btn btn-primary">Add</button>
   </form>

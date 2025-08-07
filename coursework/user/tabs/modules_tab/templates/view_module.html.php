@@ -6,7 +6,7 @@
     <ul class="list-group">
       <?php foreach ($questions as $q): ?>
         <li class="list-group-item">
-          <a href="view_question.php?id=<?= $q['id'] ?>" class="text-decoration-none fw-bold">
+          <a href="../../view_question.php?id=<?= $q['id'] ?>" class="text-decoration-none fw-bold">
             <span class="d-block text-truncate" style="max-width: 100%;">
               <?= htmlspecialchars($q['quest_title']) ?>
             </span>
